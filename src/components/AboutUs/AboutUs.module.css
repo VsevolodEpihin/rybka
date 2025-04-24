@@ -1,0 +1,36 @@
+.container {
+  margin: 5% 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 2%;
+  align-items: center;
+  overflow: hidden;
+}
+
+.aboutUs {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+}
+
+.containerImg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  color: #153D61;
+  font-size: 48px;
+  font-weight: 900;
+}
+
+.question {
+  text-align: center;
+  color: #153D61;
+}
+
+.img {
+  width: 50%;
+}

@@ -1,0 +1,49 @@
+.cardBtn {
+  background-color: #90B541;
+  border-radius: 55px;
+  color: white;
+  border: none;
+  padding: 10px 80px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  top: 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.cardBtn:hover {
+  background-color: #7a9a37;
+  top: -2px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.cardBtn:active {
+  top: 1px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  max-height: 800px;
+  margin: 2% 0;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #90B541;
+  font-size: 48px;
+  font-weight: 900;
+}
+
+.btnContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

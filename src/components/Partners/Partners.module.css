@@ -1,0 +1,34 @@
+.container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.partnersText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: 900;
+  margin: 0;
+  color: #153D61;
+}
+
+.text {
+  font-size: 28px;
+  font-weight: 500;
+  margin: 0;
+  color: #676767;
+}
+
+.partners {
+  width: 300px;
+}
+
+.partners img {
+  padding: 5px;
+}
