@@ -13,47 +13,47 @@ const Header = () => {
           <li className={styles.item}>
           <NavLink to="/">
             {({ isActive }) => (
-            <span className={isActive ? `${styles.link} ${styles.active}` : styles.link}>
-              Главная
-            </span>
+              <span className={isActive ? `${styles.link} ${styles.active}` : styles.link}>
+                Главная
+              </span>
             )}
           </NavLink>
           </li>
           <li className={styles.item}>
           <NavLink to="/about-us">
             {({ isActive }) => (
-            <span className={isActive ? `${styles.link} ${styles.active}` : styles.link}>
-              О нас
-            </span>
+              <span className={isActive ? `${styles.link} ${styles.active}` : styles.link}>
+                О нас
+              </span>
             )}
           </NavLink>
           </li>
           <li className={styles.item}>
-            <NavLink to="/volunteers">
-              {({ isActive }) => (
+          <NavLink to="/volunteers">
+            {({ isActive }) => (
               <span className={isActive ? `${styles.link} ${styles.active}` : styles.link}>
                 Волонтерам
               </span>
-              )}
-            </NavLink>
+            )}
+          </NavLink>
           </li>
           <li className={styles.item}>
-            <NavLink to="/partners">
-              {({ isActive }) => (
+          <NavLink to="/partners">
+            {({ isActive }) => (
               <span className={isActive ? `${styles.link} ${styles.active}` : styles.link}>
                 Партнерам
               </span>
-              )}
-            </NavLink>
+            )}
+          </NavLink>
           </li>
           <li className={styles.item}>
-            <NavLink to="/events">
-              {({ isActive }) => (
+          <NavLink to="/events">
+            {({ isActive }) => (
               <span className={isActive ? `${styles.link} ${styles.active}` : styles.link}>
                 События
               </span>
-              )}
-            </NavLink>
+            )}
+          </NavLink>
           </li>
         </ul>
       </nav>

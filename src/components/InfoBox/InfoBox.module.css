@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 5% 0;
+}
+
+.infoContainer {
+  width: 30%;
+}
+
+.text {
+  text-align: left;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: 900;
+  margin: 0;
+  color: #153D61;
+}
