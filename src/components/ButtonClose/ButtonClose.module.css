@@ -1,0 +1,12 @@
+.btn {
+  background-color: transparent;
+  border: 3px solid rgb(5, 97, 244);
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: rgb(5, 97, 244);
+  position: absolute;
+  width: 10%;
+  top: 1%;
+  right: 2%;
+}

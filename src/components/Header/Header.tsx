@@ -1,7 +1,19 @@
-import { Link, NavLink } from 'react-router';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import styles from './Header.module.css';
+import useAuthStore from '../../store/authStore';
 
 const Header = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { setPrevPath, openModal } = useAuthStore();
+
+  const handleProfileClick = (e: React.MouseEvent) => {
+    setPrevPath(location.pathname + location.search);
+    openModal();
+    navigate('/auth');
+    e.preventDefault();
+  };
+
   return (
     <header className={styles.header}>
       <div className={styles.navContainer}>
@@ -59,9 +71,27 @@ const Header = () => {
       </nav>
       </div>
       <div className={styles.socialMedia}>
-        <img width={60} src="/lk.png" alt="person" />
-        <img width={60} src="/tg.png" alt="telegram" />
-        <img width={60} src="/vk.png" alt="vk" />
+          <a href="/auth" onClick={handleProfileClick}>
+            <img
+              width={60}
+              src="/lk.png"
+              alt="person"
+            />
+          </a>
+          <NavLink to="/">
+            <img
+              width={60}
+              src="/tg.png"
+              alt="telegram"
+            />
+          </NavLink>
+          <NavLink to="/">
+            <img
+              width={60}
+              src="/vk.png"
+              alt="vk"
+            />
+          </NavLink>
       </div>
     </header>
   )

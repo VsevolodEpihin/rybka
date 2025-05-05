@@ -32,3 +32,38 @@ export const getMockNews = () => {
     },
   ];   
 };
+
+export const findAuthUser = () => {
+  return [
+    {
+      id:"1",
+      firstName: "Epikhin",
+      name: "Vsevolod",
+      surname: "Andreevich",
+      avatarImg: "/user1.jpg",
+      tel: "+7 (989) 614-58-50",
+      email: "epikhin01_03@mail.ru",
+      password: "123456789",
+      dateBirthday: "21.01.2003",
+      city: 'Taganrog',
+      gender: 'men',
+      career: 'developer',
+      univerity: 'SFEDU',
+      releaseDate: '23.06.2025',
+      socialExpirience: 'lorem ilpsum',
+      levelEng: 'L2',
+      priorityAreas: ['wop','volunteer'],
+      consent: true,
+    },
+    {
+      id:"2",
+      tel: "epikhin01_03@mail.ru",
+      password: "123456789",
+    },
+    {
+      id:"3",
+      tel: "epikhin01_04@mail.ru",
+      password: "123456789",
+    },
+  ]
+}

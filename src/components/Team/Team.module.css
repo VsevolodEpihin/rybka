@@ -1,0 +1,23 @@
+.container {
+  margin: 5% 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5%;
+  align-items: center;
+  overflow: hidden;
+}
+
+.teamContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+}
+
+.title {
+  color: #153D61;
+  font-size: 48px;
+  font-weight: 900;
+}

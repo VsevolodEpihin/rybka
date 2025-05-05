@@ -1,21 +1,7 @@
 import { create } from 'zustand';
 
 import { getNews } from '../api/newsApi';
-
-type Nullable<T> = T | null;
-
-interface News {
-  id: number;
-  text: string;
-  date: string;
-};
-
-interface NewsStore {
-  isLoading: boolean;
-  error: Nullable<string>;
-  news: Nullable<News[]>;
-  getNews: () => void;
-};
+import { News, NewsStore } from '../types/NewsDto';
 
 const useNewsStore = create<NewsStore>((set) => ({
   isLoading: false,
@@ -25,7 +11,6 @@ const useNewsStore = create<NewsStore>((set) => ({
     set({ isLoading: true })
     let news: News[] = []
     try {
-      console.log(2)
       news = await getNews();
       console.log(news)
       set({ news })

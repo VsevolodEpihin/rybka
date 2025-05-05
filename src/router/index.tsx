@@ -6,6 +6,7 @@ import VolunteersPage from '../pages/VolunteersPage/VolunteersPage';
 import PartnersPage from '../pages/PartnersPage/PartnersPage';
 import ActionsPage from '../pages/ActionsPage/ActionsPage';
 import MainLayout from '../components/MainLayout/MainLayout';
+import AuthPage from '../pages/AuthPage/AuthPage';
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
         path: "/events",
         element: <ActionsPage />,
       },
+      {
+        path: "/auth",
+        element: <AuthPage />
+      }
     ]
   }
 ]);

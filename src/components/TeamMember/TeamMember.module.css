@@ -1,0 +1,24 @@
+.container {
+  margin: 5% 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2%;
+  align-items: center;
+  overflow: hidden;
+  margin: 0 10px;
+}
+
+.avatarContainer {
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #153D61;
+  justify-content: center;
+}
+
+.title {
+  color: #153D61;
+  font-size: 32px;
+  font-weight: 900;
+}
