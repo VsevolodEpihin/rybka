@@ -13,4 +13,4 @@ export const getNews: getNews = async () => {
   const data = await getMockNews();
   console.log(data)
   return data;
-}
+};
