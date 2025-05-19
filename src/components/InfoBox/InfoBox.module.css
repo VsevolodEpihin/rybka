@@ -4,6 +4,25 @@
   align-items: center;
   text-align: center;
   margin: 5% 0;
+  gap: 10%;
+}
+
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+    gap: 32px;
+    margin: 32px 0;
+  }
+  .infoContainer {
+    width: 80%;
+  }
+  .title {
+    font-size: 32px;
+  }
+
+  .container img {
+    width: 80%;
+  }
 }
 
 .infoContainer {

@@ -1,0 +1,22 @@
+.tittleContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.tittleContainer h2 {
+    color: #153D61;
+    font-size: 48px;
+    font-weight: 900;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.tittleContainer h3 {
+    color: #676767;
+    font-size: 24px;
+    font-weight: 500;
+    margin: 0;
+}

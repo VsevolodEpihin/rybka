@@ -1,36 +1,150 @@
 .container {
   margin: 5% 0;
-  width: 100%;
   display: flex;
   justify-content: center;
-  gap: 2%;
-  align-items: center;
+  gap: 5%;
+  align-items: flex-start;
   overflow: hidden;
+  padding: 0 5%;
 }
 
 .aboutUs {
-  width: 30%;
+  width: 50%;
   display: flex;
   flex-direction: column;
 }
 
+.aboutUs p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #333;
+  margin: 20px 0;
+  text-align: justify;
+}
+
 .containerImg {
+  width: 45%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 30px;
 }
 
 .title {
   color: #153D61;
   font-size: 48px;
   font-weight: 900;
+  margin: 0;
 }
 
 .question {
   text-align: center;
   color: #153D61;
+  font-size: 24px;
+  font-weight: 700;
+  margin: 30px 0 0 0;
 }
 
 .img {
-  width: 50%;
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.img:hover {
+  transform: scale(1.02);
+}
+
+@media (max-width: 1200px) {
+  .container {
+    gap: 4%;
+  }
+
+  .aboutUs {
+    width: 55%;
+  }
+
+  .containerImg {
+    width: 41%;
+  }
+
+  .title {
+    font-size: 42px;
+  }
+
+  .aboutUs p {
+    font-size: 16px;
+  }
+
+  .question {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .aboutUs {
+    width: 90%;
+    text-align: center;
+  }
+
+  .containerImg {
+    width: 90%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .img {
+    width: calc(50% - 20px);
+    min-width: 250px;
+  }
+
+  .title {
+    font-size: 36px;
+  }
+
+  .aboutUs p {
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 15px;
+  }
+
+  .aboutUs {
+    width: 100%;
+  }
+
+  .containerImg {
+    width: 100%;
+  }
+
+  .img {
+    width: 100%;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+
+  .question {
+    font-size: 20px;
+  }
+
+  .aboutUs p {
+    font-size: 15px;
+    line-height: 1.5;
+  }
 }

@@ -1,24 +1,106 @@
 .container {
-  margin: 5% 0;
-  width: 100%;
+  width: calc(25% - 30px);
+  min-width: 250px;
   display: flex;
-  justify-content: center;
   flex-direction: column;
-  gap: 2%;
   align-items: center;
-  overflow: hidden;
-  margin: 0 10px;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 15px;
+  background-color: white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.container:hover {
+  transform: translateY(-5px);
 }
 
 .avatarContainer {
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   overflow: hidden;
   background-color: #153D61;
+  display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.nameContainer {
+  text-align: center;
 }
 
 .title {
   color: #153D61;
-  font-size: 32px;
+  font-size: 24px;
   font-weight: 900;
+  margin: 0 0 10px 0;
+}
+
+.nameContainer p {
+  color: #666;
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    width: calc(33.33% - 25px);
+  }
+
+  .avatarContainer {
+    width: 180px;
+    height: 180px;
+  }
+
+  .title {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 900px) {
+  .container {
+    width: calc(50% - 20px);
+  }
+
+  .avatarContainer {
+    width: 160px;
+    height: 160px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .nameContainer p {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: 100%;
+    min-width: auto;
+    padding: 15px;
+  }
+
+  .avatarContainer {
+    width: 140px;
+    height: 140px;
+  }
+
+  .title {
+    font-size: 18px;
+  }
+
+  .nameContainer p {
+    font-size: 14px;
+  }
 }

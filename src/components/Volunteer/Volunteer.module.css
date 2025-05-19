@@ -7,6 +7,23 @@
   border-radius: 55px;
 }
 
+@media (max-width: 900px) {
+  .volunteerContainer {
+    flex-direction: column;
+    width: 100%;
+    padding: 16px 0;
+  }
+  .volunteer {
+    width: 100%;
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+  .btn {
+    padding: 8px 32px;
+    font-size: 14px;
+  }
+}
+
 .volunteer {
   display: flex;
   flex-direction: column;

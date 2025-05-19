@@ -4,8 +4,10 @@ import {
   Header,
   InfoBox,
   Partners,
-  Volunteer
+
 } from '../';
+import LoveContainer from '../../components/LoveContainer/LoveContainer';
+import VolunteerBox from '../../components/VolunteerBox/VolunteerBox';
 
 const HomePage = () => {
   return (
@@ -21,7 +23,10 @@ const HomePage = () => {
         altText='palm'
        />
       <Partners />
-      <Volunteer />
+      <LoveContainer
+        backgroundColor='blue'
+        leftContent={<VolunteerBox title='Я - волонтер!' text='Получи подробную информацию, как быть полезным' />}
+        rightContent={<VolunteerBox title='Я - организатор!' text='Получи подробную информацию об услугах и сотрудничестве' />} />
       <CardNews />
       <Footer />
     </>

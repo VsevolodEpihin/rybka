@@ -4,20 +4,69 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  gap: 5%;
+  gap: 50px;
   align-items: center;
   overflow: hidden;
+  padding: 0 5%;
 }
 
 .teamContainer {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  width: 70%;
+  width: 100%;
+  max-width: 1200px;
+  gap: 30px;
+  flex-wrap: wrap;
 }
 
 .title {
   color: #153D61;
   font-size: 48px;
   font-weight: 900;
+  margin: 0;
+  text-align: center;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    gap: 40px;
+  }
+
+  .teamContainer {
+    gap: 25px;
+  }
+
+  .title {
+    font-size: 42px;
+  }
+}
+
+@media (max-width: 900px) {
+  .container {
+    gap: 30px;
+  }
+
+  .teamContainer {
+    gap: 20px;
+  }
+
+  .title {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 15px;
+    gap: 25px;
+  }
+
+  .teamContainer {
+    gap: 15px;
+  }
+
+  .title {
+    font-size: 32px;
+  }
 }

@@ -4,7 +4,19 @@
   background-color: #153D61;
   padding: 20px;
   align-items: center;
-  min-width: 1200px;
+}
+
+@media (max-width: 700px) {
+  .footer {
+    padding: 10px;
+  }
+  .footerText {
+    font-size: 12px;
+    text-align: center;
+  }
+  .socialMedia img {
+    width: 20px;
+  }
 }
 
 .socialMedia {
@@ -18,7 +30,6 @@
 .socialMediaContainer img {
   width: 30px;
   height: auto;
-  
   align-items: center;
 }
 

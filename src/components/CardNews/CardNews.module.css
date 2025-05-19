@@ -9,6 +9,23 @@
   position: relative;
   top: 0;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  width: 30%;
+}
+
+@media (max-width: 900px) {
+  .cardContainer {
+    flex-direction: column;
+    gap: 12px;
+    max-height: none;
+  }
+  .title {
+    font-size: 28px;
+  }
+  .cardBtn {
+    width: 80%;
+    padding: 8px 0;
+    font-size: 14px;
+  }
 }
 
 .cardBtn:hover {
@@ -26,7 +43,6 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  overflow: hidden;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   max-height: 800px;
   margin: 2% 0;

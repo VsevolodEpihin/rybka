@@ -8,6 +8,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
+  overflow-y: auto;
 }
 
 .header {
@@ -31,6 +33,23 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  overflow-y: auto;
+  max-height: calc(100vh - 200px);
+  padding-right: 10px;
+}
+
+.fieldsGrid::-webkit-scrollbar {
+  width: 6px;
+}
+
+.fieldsGrid::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.fieldsGrid::-webkit-scrollbar-thumb {
+  background: #90B541;
+  border-radius: 3px;
 }
 
 .row {
@@ -38,11 +57,19 @@
   gap: 12px;
 }
 
+@media (max-width: 768px) {
+  .row {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
 .genderRow {
   display: flex;
   align-items: center;
   gap: 16px;
   margin-bottom: 8px;
+  flex-wrap: wrap;
 }
 
 .photoCircle {
@@ -72,9 +99,10 @@
 
 .regContainer {
   position: relative;
-  width: 33%;
+  width: 90%;
+  max-width: 600px;
   min-width: 320px;
-  min-height: 100px;
+  max-height: 90vh;
   padding: 32px 24px 24px 24px;
   background-color: #fff !important;
   border-radius: 16px;
@@ -84,4 +112,32 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
+
+@media (max-width: 480px) {
+  .modalOverlay {
+    padding: 10px;
+  }
+
+  .regContainer {
+    padding: 20px 16px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .photoCircle {
+    width: 80px;
+    height: 80px;
+    font-size: 14px;
+  }
+
+  .genderRow {
+    font-size: 14px;
+  }
+
+  .agreeRow {
+    font-size: 12px;
+  }
 }
