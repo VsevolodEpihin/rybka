@@ -35,18 +35,33 @@ export interface AuthRegister {
   priorityAreas: string[]
 }
 
+interface ValidationErrors {
+  firstName?: string;
+  name?: string;
+  middleName?: string;
+  dateBirthday?: string;
+  city?: string;
+  tel?: string;
+  password?: string;
+  confirmPassword?: string;
+  email?: string;
+}
+
 interface RegStore {
   form: AuthRegister;
   isLoading: boolean;
   error: string | null;
+  validationErrors: ValidationErrors;
   setField: (field: keyof AuthRegister, value: string | boolean | string[]) => void;
+  validateField: (field: keyof AuthRegister) => void;
+  validateForm: () => boolean;
   register: () => Promise<void>;
 }
 
 const initialForm: AuthRegister = {
   firstName: '',
   name: '',
-  password:'',
+  password: '',
   confirmPassword: '',
   middleName: '',
   dateBirthday: '',
@@ -63,14 +78,78 @@ const initialForm: AuthRegister = {
   priorityAreas: [],
 };
 
+const validateEmail = (email: string): boolean => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+};
+
 const useRegStore = create<RegStore>((set, get) => ({
   form: initialForm,
   isLoading: false,
   error: null,
+  validationErrors: {},
   setField: (field, value) => set((state) => ({
-    form: { ...state.form, [field]: value }
+    form: { ...state.form, [field]: value },
+    validationErrors: { ...state.validationErrors, [field]: undefined }
   })),
+  validateField: (field) => {
+    const value = get().form[field];
+    let error: string | undefined;
+
+    if (typeof value === 'string') {
+      if (!value && ['dateBirthday', 'city', 'middleName','firstName', 'name', 'password', 'email', 'tel'].includes(field)) {
+        error = 'Это поле обязательно';
+      } else if (field === 'email' && !validateEmail(value)) {
+        error = 'Введите корректный email';
+      } else if (field === 'password' && value.length < 6) {
+        error = 'Пароль должен содержать минимум 6 символов';
+      } else if (field === 'confirmPassword') {
+        const password = get().form.password;
+        if (value !== password) {
+          error = 'Пароли не совпадают';
+        }
+      }
+    }
+
+    set((state) => ({
+      validationErrors: { ...state.validationErrors, [field]: error }
+    }));
+  },
+  validateForm: () => {
+    const { form } = get();
+    const errors: ValidationErrors = {};
+
+    // Required fields validation
+    if (!form.firstName) {
+      errors.firstName = 'Это поле обязательно';
+    }
+    if (!form.name) {
+      errors.name = 'Это поле обязательно';
+    }
+    if (!form.email) {
+      errors.email = 'Это поле обязательно';
+    } else if (!validateEmail(form.email)) {
+      errors.email = 'Введите корректный email';
+    }
+    if (!form.password) {
+      errors.password = 'Это поле обязательно';
+    } else if (form.password.length < 6) {
+      errors.password = 'Пароль должен содержать минимум 6 символов';
+    }
+    if (!form.confirmPassword) {
+      errors.confirmPassword = 'Это поле обязательно';
+    } else if (form.confirmPassword !== form.password) {
+      errors.confirmPassword = 'Пароли не совпадают';
+    }
+
+    set({ validationErrors: errors });
+    return Object.keys(errors).length === 0;
+  },
   register: async () => {
+    if (!get().validateForm()) {
+      return;
+    }
+
     set({ isLoading: true, error: null });
     try {
       await authRegister(get().form);

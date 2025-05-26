@@ -10,7 +10,14 @@ import type { AuthRegister } from '../../store/regStore';
 import useAuthStore from '../../store/authStore';
 
 const RegModal = () => {
-  const { form, setField, register } = useRegStore();
+  const { 
+    form, 
+    setField, 
+    register, 
+    validationErrors,
+    validateField,
+    isLoading 
+  } = useRegStore();
   const { setModal, closeModal, prevPath, setPrevPath } = useAuthStore();
   const formRef = useRef<HTMLFormElement>(null);
   const navigate = useNavigate();
@@ -18,7 +25,7 @@ const RegModal = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      await register()
+      await register();
     } catch(err) {
       console.error(err);
     }
@@ -57,6 +64,10 @@ const RegModal = () => {
     }
   }
 
+  const handleBlur = (field: keyof AuthRegister) => () => {
+    validateField(field);
+  };
+
   return (
     <div className={styles.modalOverlay} onClick={handleOverlayClick}>
       <form className={styles.regContainer} ref={formRef} onSubmit={handleSubmit} onClick={e => e.stopPropagation()}>
@@ -65,12 +76,42 @@ const RegModal = () => {
           <span onClick={handleClose}><ButtonClose /></span>
         </div>
         <div className={styles.fieldsGrid}>
-          <Input placeholder="Фамилия" onChange={handleChange('name')} value={form.name} />
-          <Input placeholder="Имя" onChange={handleChange('firstName')} value={form.firstName} />
-          <Input placeholder="Отчество" onChange={handleChange('middleName')} value={form.middleName} />
+          <Input 
+            placeholder="Фамилия" 
+            onChange={handleChange('name')} 
+            onBlur={handleBlur('name')}
+            value={form.name}
+            error={validationErrors.name}
+          />
+          <Input 
+            placeholder="Имя" 
+            onChange={handleChange('firstName')} 
+            onBlur={handleBlur('firstName')}
+            value={form.firstName}
+            error={validationErrors.firstName}
+          />
+          <Input 
+            placeholder="Отчество" 
+            onChange={handleChange('middleName')} 
+            onBlur={handleBlur('middleName')}
+            value={form.middleName}
+            error={validationErrors.middleName}
+          />
           <div className={styles.row}>
-            <Input placeholder="Дата рождения" onChange={handleChange('dateBirthday')} value={form.dateBirthday} />
-            <Input placeholder="Город" onChange={handleChange('city')} value={form.city} />
+            <Input
+              placeholder="Дата рождения"
+              onChange={handleChange('dateBirthday')}
+              onBlur={handleBlur('dateBirthday')}
+              value={form.dateBirthday}
+              error={validationErrors.dateBirthday}
+            />
+            <Input
+              placeholder="Город"
+              onChange={handleChange('city')}
+              value={form.city}
+              error={validationErrors.city}
+              onBlur={handleBlur('dateBirthday')}
+            />
           </div>
           <div className={styles.genderRow}>
             <span>Пол:</span>
@@ -82,10 +123,36 @@ const RegModal = () => {
             </label>
           </div>
           <div className={styles.photoCircle}>Фото</div>
-          <Input placeholder="Мобильный телефон" onChange={handleChange('tel')} value={form.tel} />
-          <Input placeholder="E-mail" onChange={handleChange('email')} value={form.email} />
-          <Input placeholder="Пароль" onChange={handleChange('password')} value={form.password} />
-          <Input placeholder="Подтверждение пароля" onChange={handleChange('confirmPassword')} value={form.confirmPassword} />
+          <Input
+            placeholder="Мобильный телефон"
+            onChange={handleChange('tel')}
+            value={form.tel}
+            error={validationErrors.tel}
+            onBlur={handleBlur('tel')}
+          />
+          <Input 
+            placeholder="E-mail" 
+            onChange={handleChange('email')} 
+            onBlur={handleBlur('email')}
+            value={form.email}
+            error={validationErrors.email}
+          />
+          <Input 
+            placeholder="Пароль" 
+            onChange={handleChange('password')} 
+            onBlur={handleBlur('password')}
+            value={form.password}
+            type="password"
+            error={validationErrors.password}
+          />
+          <Input 
+            placeholder="Подтвердите пароль" 
+            onChange={handleChange('confirmPassword')} 
+            onBlur={handleBlur('confirmPassword')}
+            value={form.confirmPassword}
+            type="password"
+            error={validationErrors.confirmPassword}
+          />
           <Input placeholder="Род деятельности" onChange={handleChange('hobby')} value={form.hobby} />
           <div className={styles.row}>
             <Input placeholder="Образовательная организация" onChange={handleChange('university')} value={form.university} />
@@ -95,7 +162,7 @@ const RegModal = () => {
           <Input placeholder="Уровень английского языка" onChange={handleChange('levelEng')} value={form.levelEng} />
           <Input placeholder="Приоритетные направления" onChange={handleChange('priorityAreas')} value={form.priorityAreas.join(',')} />
         </div>
-        <Button type="submit">
+        <Button type="submit" disabled={isLoading}>
           Зарегистрироваться
         </Button>
         <div className={styles.secondaryBtn}>
