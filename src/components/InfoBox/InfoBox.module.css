@@ -39,3 +39,7 @@
   margin: 0;
   color: #153D61;
 }
+
+.imgContainer > img {
+  max-width: 100%;
+}

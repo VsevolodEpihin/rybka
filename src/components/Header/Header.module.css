@@ -6,6 +6,18 @@
   position: relative;
 }
 
+.logoutButton {
+  background-color: #2ecc71;
+  border-radius: 10px;
+  border: 0;
+  padding: 2%;
+  margin-left: 2%;
+  color: white;
+  font-weight: 600;
+  width: 80%;
+  cursor: pointer;
+}
+
 .navContainer {
   display: flex;
   justify-content: center;
@@ -14,6 +26,7 @@
 
 .nav {
   display: flex;
+  align-items: center;
 }
 
 .item {

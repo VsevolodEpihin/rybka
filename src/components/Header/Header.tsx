@@ -53,9 +53,7 @@ const Header = () => {
           <li className={styles.item}>
             <NavLink to="/about-us" onClick={() => setIsMenuOpen(false)}>
               {({ isActive }) => (
-                <span className={isActive ? `${styles.link} ${styles.active}` : styles.link}>
-                  О нас
-                </span>
+                <span className={isActive ? `${styles.link} ${styles.active}` : styles.link}>О нас</span>
               )}
             </NavLink>
           </li>
@@ -86,17 +84,6 @@ const Header = () => {
               )}
             </NavLink>
           </li>
-          <li className={styles.item}>
-            {token ? (
-              <button className={styles.logoutButton} onClick={handleLogout}>
-                Выйти
-              </button>
-            ) : (
-              <button className={styles.loginButton} onClick={handleProfileClick}>
-                Войти
-              </button>
-            )}
-          </li>
         </ul>
       </nav>
       <div className={`${styles.socialMedia} ${isMenuOpen ? styles.open : ''}`}>
@@ -121,6 +108,11 @@ const Header = () => {
             alt="vk"
           />
         </NavLink>
+        {token && (
+          <button className={styles.logoutButton} onClick={handleLogout}>
+            Выйти
+          </button>
+        )}
       </div>
     </header>
   )
