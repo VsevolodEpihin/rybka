@@ -1,11 +1,12 @@
-import { useRef } from 'react';
+import { FormEvent, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Input from '../Input/Input';
 import Button from '../Button/Button';
 import ButtonClose from '../ButtonClose/ButtonClose';
 import styles from './RegModal.module.css';
-import useRegStore, { RegForm } from '../../store/regStore';
+import useRegStore from '../../store/regStore';
+import type { AuthRegister } from '../../store/regStore';
 import useAuthStore from '../../store/authStore';
 
 const RegModal = () => {
@@ -14,16 +15,14 @@ const RegModal = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const navigate = useNavigate();
 
-  const handleChange = (field: keyof RegForm) => (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value: string | boolean = field === 'agree' ? e.target.checked : e.target.value;
-    setField(field, value);
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    await register();
-    // Можно добавить сброс формы или уведомление об успехе
-  };
+    try {
+      await register()
+    } catch(err) {
+      console.error(err);
+    }
+  }
 
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
@@ -49,6 +48,15 @@ const RegModal = () => {
     }
   };
 
+  const handleChange = (field: keyof AuthRegister) => (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (field === 'priorityAreas') {
+      const value = e.target.value.split(',').map(item => item.trim()).filter(Boolean);
+      setField(field, value);
+    } else {
+      setField(field, e.target.value);
+    }
+  }
+
   return (
     <div className={styles.modalOverlay} onClick={handleOverlayClick}>
       <form className={styles.regContainer} ref={formRef} onSubmit={handleSubmit} onClick={e => e.stopPropagation()}>
@@ -57,11 +65,11 @@ const RegModal = () => {
           <span onClick={handleClose}><ButtonClose /></span>
         </div>
         <div className={styles.fieldsGrid}>
-          <Input placeholder="Фамилия" onChange={handleChange('lastName')} value={form.lastName} />
+          <Input placeholder="Фамилия" onChange={handleChange('name')} value={form.name} />
           <Input placeholder="Имя" onChange={handleChange('firstName')} value={form.firstName} />
           <Input placeholder="Отчество" onChange={handleChange('middleName')} value={form.middleName} />
           <div className={styles.row}>
-            <Input placeholder="Дата рождения" onChange={handleChange('birthDate')} value={form.birthDate} />
+            <Input placeholder="Дата рождения" onChange={handleChange('dateBirthday')} value={form.dateBirthday} />
             <Input placeholder="Город" onChange={handleChange('city')} value={form.city} />
           </div>
           <div className={styles.genderRow}>
@@ -74,22 +82,18 @@ const RegModal = () => {
             </label>
           </div>
           <div className={styles.photoCircle}>Фото</div>
-          <Input placeholder="Мобильный телефон" onChange={handleChange('phone')} value={form.phone} />
+          <Input placeholder="Мобильный телефон" onChange={handleChange('tel')} value={form.tel} />
           <Input placeholder="E-mail" onChange={handleChange('email')} value={form.email} />
           <Input placeholder="Пароль" onChange={handleChange('password')} value={form.password} />
           <Input placeholder="Подтверждение пароля" onChange={handleChange('confirmPassword')} value={form.confirmPassword} />
-          <Input placeholder="Род деятельности" onChange={handleChange('occupation')} value={form.occupation} />
+          <Input placeholder="Род деятельности" onChange={handleChange('hobby')} value={form.hobby} />
           <div className={styles.row}>
-            <Input placeholder="Образовательная организация" onChange={handleChange('education')} value={form.education} />
-            <Input placeholder="Год выпуска" onChange={handleChange('gradYear')} value={form.gradYear} />
+            <Input placeholder="Образовательная организация" onChange={handleChange('university')} value={form.university} />
+            <Input placeholder="Год выпуска" onChange={handleChange('yearForRelease')} value={form.yearForRelease} />
           </div>
           <Input placeholder="Опыт общественной деятельности" onChange={handleChange('experience')} value={form.experience} />
-          <Input placeholder="Уровень английского языка" onChange={handleChange('english')} value={form.english} />
-          <Input placeholder="Приоритетные направления" onChange={handleChange('priority')} value={form.priority} />
-        </div>
-        <div className={styles.agreeRow}>
-          <input type="checkbox" id="agree" checked={form.agree} onChange={handleChange('agree')} />
-          <label htmlFor="agree">Даю согласие на обработку персональных данных</label>
+          <Input placeholder="Уровень английского языка" onChange={handleChange('levelEng')} value={form.levelEng} />
+          <Input placeholder="Приоритетные направления" onChange={handleChange('priorityAreas')} value={form.priorityAreas.join(',')} />
         </div>
         <Button type="submit">
           Зарегистрироваться

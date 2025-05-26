@@ -44,9 +44,7 @@ const useAuthStore = create<AuthStore>((set) => ({
   login: async () => {
     set({ isLoading: true, error: null });
     try {
-      // Здесь должен быть вызов API авторизации
       await new Promise((res) => setTimeout(res, 1000));
-      // После успешной авторизации можно сбросить форму или показать успех
     } catch (err: unknown) {
       if(err instanceof Error) {
         set({ error: err.message || 'Ошибка авторизации' });

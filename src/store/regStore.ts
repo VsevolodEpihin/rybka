@@ -1,54 +1,69 @@
 import { create } from 'zustand';
+import { authRegister } from '../api/authRegisterApi';
 
-export interface RegForm {
-  lastName: string;
-  firstName: string;
-  middleName: string;
-  birthDate: string;
-  city: string;
-  gender: string;
-  phone: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-  occupation: string;
-  education: string;
-  gradYear: string;
-  experience: string;
-  english: string;
-  priority: string;
-  agree: boolean;
+export enum Gender {
+  MALE = 'male',
+  FEMALE = 'female',
+}
+
+export enum EnglishLevel {
+  A1 = 'A1',
+  A2 = 'A2',
+  B1 = 'B1',
+  B2 = 'B2',
+  C1 = 'C1',
+  C2 = 'C2',
+}
+
+export interface AuthRegister {
+  firstName: string,
+  name: string,
+  password: string,
+  confirmPassword: string,
+  middleName: string,
+  dateBirthday: string,
+  city: string,
+  photo: string,
+  gender: Gender,
+  tel: string,
+  email: string,
+  hobby: string,
+  university: string,
+  yearForRelease: string,
+  experience: string,
+  levelEng: EnglishLevel,
+  priorityAreas: string[]
 }
 
 interface RegStore {
-  form: RegForm;
+  form: AuthRegister;
   isLoading: boolean;
   error: string | null;
-  setField: (field: keyof RegForm, value: string | boolean) => void;
+  setField: (field: keyof AuthRegister, value: string | boolean | string[]) => void;
   register: () => Promise<void>;
 }
 
-const initialForm: RegForm = {
-  lastName: '',
+const initialForm: AuthRegister = {
   firstName: '',
-  middleName: '',
-  birthDate: '',
-  city: '',
-  gender: 'female',
-  phone: '',
-  email: '',
-  password: '',
+  name: '',
+  password:'',
   confirmPassword: '',
-  occupation: '',
-  education: '',
-  gradYear: '',
+  middleName: '',
+  dateBirthday: '',
+  city: '',
+  photo: '',
+  gender: Gender.FEMALE,
+  tel: '',
+  email: '',
+  hobby: '',
+  university: '',
+  yearForRelease: '',
   experience: '',
-  english: '',
-  priority: '',
-  agree: false,
+  levelEng: EnglishLevel.A1,
+  priorityAreas: [],
 };
 
-const useRegStore = create<RegStore>((set) => ({
+const useRegStore = create<RegStore>((set, get) => ({
   form: initialForm,
   isLoading: false,
   error: null,
@@ -58,11 +73,9 @@ const useRegStore = create<RegStore>((set) => ({
   register: async () => {
     set({ isLoading: true, error: null });
     try {
-      // Здесь должен быть вызов API регистрации
-      await new Promise((res) => setTimeout(res, 1000));
-      // После успешной регистрации можно сбросить форму или показать успех
+      await authRegister(get().form);
     } catch (err: unknown) {
-      if(err instanceof Error) {
+      if (err instanceof Error) {
         set({ error: err.message || 'Ошибка регистрации' });
       } else {
         set({ error: 'Ошибка регистрации' });
@@ -73,4 +86,4 @@ const useRegStore = create<RegStore>((set) => ({
   },
 }));
 
-export default useRegStore; 
+export default useRegStore;
