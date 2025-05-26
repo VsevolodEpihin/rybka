@@ -6,14 +6,21 @@ import useAuthStore from '../../store/authStore';
 const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { setPrevPath, openModal } = useAuthStore();
+  const { setPrevPath, openModal, token, logout } = useAuthStore();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleProfileClick = (e: React.MouseEvent) => {
-    setPrevPath(location.pathname + location.search);
-    openModal();
-    navigate('/auth');
-    e.preventDefault();
+    if (!token) {
+      e.preventDefault();
+      setPrevPath(location.pathname + location.search);
+      openModal();
+      navigate('/auth');
+    }
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
   };
 
   const toggleMenu = () => {
@@ -79,16 +86,27 @@ const Header = () => {
               )}
             </NavLink>
           </li>
+          <li className={styles.item}>
+            {token ? (
+              <button className={styles.logoutButton} onClick={handleLogout}>
+                Выйти
+              </button>
+            ) : (
+              <button className={styles.loginButton} onClick={handleProfileClick}>
+                Войти
+              </button>
+            )}
+          </li>
         </ul>
       </nav>
       <div className={`${styles.socialMedia} ${isMenuOpen ? styles.open : ''}`}>
-        <a href="/auth" onClick={handleProfileClick}>
+        <Link to={token ? "/profile" : "/auth"} onClick={handleProfileClick}>
           <img
             width={60}
             src="/lk.png"
             alt="person"
           />
-        </a>
+        </Link>
         <NavLink to="/">
           <img
             width={60}

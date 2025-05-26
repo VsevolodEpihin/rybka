@@ -47,11 +47,19 @@ interface ValidationErrors {
   email?: string;
 }
 
+interface User {
+  id: string;
+  email: string;
+  // добавьте другие поля пользователя, которые приходят с сервера
+}
+
 interface RegStore {
   form: AuthRegister;
   isLoading: boolean;
   error: string | null;
   validationErrors: ValidationErrors;
+  user: User | null;
+  token: string | null;
   setField: (field: keyof AuthRegister, value: string | boolean | string[]) => void;
   validateField: (field: keyof AuthRegister) => void;
   validateForm: () => boolean;
@@ -88,6 +96,8 @@ const useRegStore = create<RegStore>((set, get) => ({
   isLoading: false,
   error: null,
   validationErrors: {},
+  user: null,
+  token: null,
   setField: (field, value) => set((state) => ({
     form: { ...state.form, [field]: value },
     validationErrors: { ...state.validationErrors, [field]: undefined }
@@ -152,7 +162,9 @@ const useRegStore = create<RegStore>((set, get) => ({
 
     set({ isLoading: true, error: null });
     try {
-      await authRegister(get().form);
+      const { token, user } = await authRegister(get().form);
+      localStorage.setItem('token', token);
+      set({ token, user, error: null });
     } catch (err: unknown) {
       if (err instanceof Error) {
         set({ error: err.message || 'Ошибка регистрации' });

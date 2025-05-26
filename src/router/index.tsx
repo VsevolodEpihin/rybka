@@ -7,6 +7,8 @@ import PartnersPage from '../pages/PartnersPage/PartnersPage';
 import ActionsPage from '../pages/ActionsPage/ActionsPage';
 import MainLayout from '../components/MainLayout/MainLayout';
 import AuthPage from '../pages/AuthPage/AuthPage';
+import ProtectedRoute from '../components/ProtectedRoute/ProtectedRoute';
+import ProfilePage from '../pages/ProfilePage/ProfilePage';
 
 export const router = createBrowserRouter([
   {
@@ -23,19 +25,23 @@ export const router = createBrowserRouter([
       },
       {
         path: "/volunteers",
-        element: <VolunteersPage />,
+        element: <ProtectedRoute><VolunteersPage /></ProtectedRoute>,
       },
       {
         path: "/partners",
-        element: <PartnersPage />,
+        element: <ProtectedRoute><PartnersPage /></ProtectedRoute>,
       },
       {
         path: "/events",
-        element: <ActionsPage />,
+        element: <ProtectedRoute><ActionsPage /></ProtectedRoute>,
       },
       {
         path: "/auth",
         element: <AuthPage />
+      },
+      {
+        path: "/profile",
+        element: <ProtectedRoute><ProfilePage /></ProtectedRoute>
       }
     ]
   }

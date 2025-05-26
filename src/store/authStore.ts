@@ -13,15 +13,24 @@ interface ValidationErrors {
   password?: string;
 }
 
+interface User {
+  id: string;
+  email: string;
+  // добавьте другие поля пользователя, которые приходят с сервера
+}
+
 interface AuthStore {
   form: AuthForm;
   isLoading: boolean;
   error: string | null;
   validationErrors: ValidationErrors;
+  user: User | null;
+  token: string | null;
   setField: (field: keyof AuthForm, value: string) => void;
   validateField: (field: keyof AuthForm) => void;
   validateForm: () => boolean;
   login: () => Promise<void>;
+  logout: () => void;
   modal: ModalType;
   setModal: (modal: ModalType) => void;
   isOpen: boolean;
@@ -51,6 +60,8 @@ const useAuthStore = create<AuthStore>((set, get) => ({
   isLoading: false,
   error: null,
   validationErrors: {},
+  user: null,
+  token: localStorage.getItem('token'),
   modal: 'auth',
   isOpen: true,
   prevPath: '/',
@@ -108,7 +119,10 @@ const useAuthStore = create<AuthStore>((set, get) => ({
 
     set({ isLoading: true, error: null });
     try {
-      await authLogin(get().form);
+      const { access_token, user } = await authLogin(get().form);
+      console.log(access_token)
+      localStorage.setItem('token', access_token);
+      set({ token: access_token, user, error: null });
     } catch (err: unknown) {
       if(err instanceof Error) {
         set({ error: err.message || 'Ошибка авторизации' });
@@ -118,6 +132,10 @@ const useAuthStore = create<AuthStore>((set, get) => ({
     } finally {
       set({ isLoading: false });
     }
+  },
+  logout: () => {
+    localStorage.removeItem('token');
+    set({ token: null, user: null });
   },
 }));
 

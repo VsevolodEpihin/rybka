@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import AuthModal from '../../components/AuthModal/AuthModal';
 import RegModal from '../../components/RegModal/RegModal';
@@ -14,14 +14,22 @@ const AuthPage = () => {
     closeModal,
     openModal,
     prevPath,
-    setPrevPath
+    setPrevPath,
+    token
   } = useAuthStore();
   
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    openModal();
-  }, [openModal]);
+    if (token) {
+      const from = location.state?.from?.pathname || prevPath || '/';
+      navigate(from);
+      setPrevPath('/');
+    } else {
+      openModal();
+    }
+  }, [token, location, navigate, prevPath, setPrevPath, openModal]);
 
   if (!isOpen) return null;
 

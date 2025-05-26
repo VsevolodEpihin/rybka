@@ -4,10 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import Input from '../Input/Input';
 import Button from '../Button/Button';
 import ButtonClose from '../ButtonClose/ButtonClose';
-import styles from './RegModal.module.css';
 import useRegStore from '../../store/regStore';
 import type { AuthRegister } from '../../store/regStore';
 import useAuthStore from '../../store/authStore';
+
+import styles from './RegModal.module.css';
 
 const RegModal = () => {
   const { 
@@ -83,14 +84,14 @@ const RegModal = () => {
             value={form.name}
             error={validationErrors.name}
           />
-          <Input 
-            placeholder="Имя" 
-            onChange={handleChange('firstName')} 
+          <Input
+            placeholder="Имя"
+            onChange={handleChange('firstName')}
             onBlur={handleBlur('firstName')}
             value={form.firstName}
             error={validationErrors.firstName}
           />
-          <Input 
+          <Input
             placeholder="Отчество" 
             onChange={handleChange('middleName')} 
             onBlur={handleBlur('middleName')}
@@ -132,22 +133,22 @@ const RegModal = () => {
           />
           <Input 
             placeholder="E-mail" 
-            onChange={handleChange('email')} 
+            onChange={handleChange('email')}
             onBlur={handleBlur('email')}
             value={form.email}
             error={validationErrors.email}
           />
-          <Input 
-            placeholder="Пароль" 
-            onChange={handleChange('password')} 
+          <Input
+            placeholder="Пароль"
+            onChange={handleChange('password')}
             onBlur={handleBlur('password')}
             value={form.password}
             type="password"
             error={validationErrors.password}
           />
-          <Input 
-            placeholder="Подтвердите пароль" 
-            onChange={handleChange('confirmPassword')} 
+          <Input
+            placeholder="Подтвердите пароль"
+            onChange={handleChange('confirmPassword')}
             onBlur={handleBlur('confirmPassword')}
             value={form.confirmPassword}
             type="password"

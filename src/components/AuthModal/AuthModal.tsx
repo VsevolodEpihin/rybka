@@ -67,16 +67,16 @@ const AuthModal = () => {
           <span onClick={handleClose}><ButtonClose /></span>
         </div>
         <div className={styles.fieldContainer}>
-          <Input 
+          <Input
             placeholder="Номер телефона / Email" 
-            onChange={handleChange('login')} 
+            onChange={handleChange('login')}
             onBlur={handleBlur('login')}
             value={form.login}
             error={validationErrors.login}
           />
-          <Input 
-            placeholder="Пароль" 
-            onChange={handleChange('password')} 
+          <Input
+            placeholder="Пароль"
+            onChange={handleChange('password')}
             onBlur={handleBlur('password')}
             value={form.password}
             type="password"
