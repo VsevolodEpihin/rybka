@@ -8,7 +8,7 @@ interface ProtectedRouteProps {
 const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
   const { token } = useAuthStore();
   const location = useLocation();
-    console.log(token)
+  
   if (!token) {
     return <Navigate to="/auth" state={{ from: location }} replace />;
   }

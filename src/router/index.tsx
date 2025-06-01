@@ -4,11 +4,11 @@ import HomePage from '../pages/HomePage/HomePage';
 import AboutUsPage from '../pages/AboutUsPage/AboutUsPage';
 import VolunteersPage from '../pages/VolunteersPage/VolunteersPage';
 import PartnersPage from '../pages/PartnersPage/PartnersPage';
-import ActionsPage from '../pages/ActionsPage/ActionsPage';
 import MainLayout from '../components/MainLayout/MainLayout';
 import AuthPage from '../pages/AuthPage/AuthPage';
 import ProtectedRoute from '../components/ProtectedRoute/ProtectedRoute';
 import ProfilePage from '../pages/ProfilePage/ProfilePage';
+import EventsPage from '../pages/EventsPage/EventsPage';
 
 export const router = createBrowserRouter([
   {
@@ -33,7 +33,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/events",
-        element: <ProtectedRoute><ActionsPage /></ProtectedRoute>,
+        element: <ProtectedRoute><EventsPage /></ProtectedRoute>,
       },
       {
         path: "/auth",
@@ -42,7 +42,7 @@ export const router = createBrowserRouter([
       {
         path: "/profile",
         element: <ProtectedRoute><ProfilePage /></ProtectedRoute>
-      }
+      },
     ]
   }
 ]);

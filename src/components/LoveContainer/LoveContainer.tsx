@@ -31,7 +31,7 @@ const LoveContainer = ({
               {rightContent}
             </div>
             <div>
-              <a className={styles.containerBoxLink} href="https://dobro-iktib.rf.gd/">ДОБРО-ИКТИБ.РФ</a>
+              <a className={styles.containerBoxLink} href="https://dobro.ru/event/11179253?utm_source=dobroru&utm_medium=organic&utm_campaign=pagerepost&utm_content=event">ДОБРО-ИКТИБ.РФ</a>
             </div>
             { footer &&
             <div className={styles.footerContainer}>
