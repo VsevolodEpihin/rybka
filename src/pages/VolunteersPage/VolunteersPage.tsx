@@ -67,7 +67,7 @@ const VolunteersPage = () => {
         pathImg='/gen-volunteer.png'
         altText="competition"      
       />
-      <Vector mockVectors={mockVectors}/>
+      <Vector mockVectors={mockVectors} type={""}/>
       <LoveContainer
         title="Твое направление ждет тебя!"
         prevTitle="Переходи по ссылке!"

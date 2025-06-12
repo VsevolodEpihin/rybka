@@ -1,0 +1,216 @@
+.adminPanelWrapper {
+  max-width: 600px;
+  margin: 32px auto;
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 4px 24px rgba(103, 58, 183, 0.10);
+  padding: 32px 24px 32px 24px;
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+.title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: #512da8;
+}
+.datesList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
+  justify-content: center;
+}
+.dateBtn, .dateBtnActive {
+  padding: 8px 16px;
+  border-radius: 12px;
+  border: none;
+  background: #ede7f6;
+  color: #512da8;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.dateBtnActive {
+  background: linear-gradient(90deg, #673ab7 0%, #512da8 100%);
+  color: #fff;
+  font-weight: 700;
+}
+.addDateBtn {
+  background: #b2ff59;
+  color: #22325a;
+  font-size: 1.2rem;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  transition: background 0.2s;
+}
+.addDateBtn:hover {
+  background: #8bc34a;
+  color: #fff;
+}
+.eventsSection {
+  margin-top: 12px;
+}
+.subtitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #333;
+}
+.eventCards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.eventCard {
+  background: linear-gradient(90deg, #673ab7 0%, #512da8 100%);
+  border-radius: 18px;
+  color: #fff;
+  padding: 18px 20px 14px 20px;
+  box-shadow: 0 2px 12px rgba(103, 58, 183, 0.13);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+}
+.eventTitle {
+  font-size: 1.08rem;
+  font-weight: 600;
+}
+.eventTime {
+  font-size: 0.98rem;
+  opacity: 0.85;
+}
+.eventHashtag {
+  font-size: 0.95rem;
+  color: #b2ff59;
+  font-weight: 600;
+}
+.eventActions {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+.editBtn {
+  background: #e6f36a;
+  color: #22325a;
+  border: none;
+  border-radius: 8px;
+  padding: 7px 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.editBtn:hover {
+  background: #b2ff59;
+}
+.deleteBtn {
+  background: #ff5252;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 7px 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.deleteBtn:hover {
+  background: #d32f2f;
+}
+.addEventBtn {
+  margin-top: 8px;
+  background: #8bc34a;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 20px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.addEventBtn:hover {
+  background: #689f38;
+}
+.noEvents {
+  color: #888;
+  background: #f3f3f7;
+  border-radius: 12px;
+  padding: 18px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+/* Модальное окно */
+.modalOverlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(34, 50, 90, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modal {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px #512da822;
+  padding: 32px 28px 24px 28px;
+  min-width: 320px;
+  max-width: 90vw;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+.modalForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.input {
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+.saveBtn {
+  background: #8bc34a;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.saveBtn:hover {
+  background: #689f38;
+}
+.cancelBtn {
+  background: #ede7f6;
+  color: #512da8;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.cancelBtn:hover {
+  background: #d1c4e9;
+}
+.modalActions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+  justify-content: flex-end;
+} 

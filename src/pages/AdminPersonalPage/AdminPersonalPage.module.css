@@ -1,0 +1,160 @@
+.container {
+  padding: 32px 16px;
+  max-width: 900px;
+  margin: 0 auto;
+  font-family: 'Montserrat', Arial, sans-serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.title {
+  text-align: center;
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin-bottom: 32px;
+  color: #22325a;
+}
+.cabinet {
+  color: #8bc34a;
+}
+.organization {
+  color: #e6f36a;
+  text-shadow: 0 1px 2px #22325a22;
+}
+
+.topSection {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+.leftBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 320px;
+}
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.label {
+  font-size: 0.95rem;
+  color: #bdbdbd;
+  margin-bottom: 2px;
+}
+.input {
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #f5f5f5;
+  color: #22325a;
+  font-size: 1rem;
+}
+.changePasswordBtn {
+  background: #e6f36a;
+  color: #22325a;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 0;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.changePasswordBtn:hover {
+  background: #d4e85a;
+}
+.exportBtn {
+  background: linear-gradient(90deg, #3a5d3a 0%, #8bc34a 100%);
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  padding: 14px 0;
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-top: 8px;
+  box-shadow: 0 2px 8px #8bc34a22;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.exportBtn:hover {
+  background: linear-gradient(90deg, #2e4a2e 0%, #7cb342 100%);
+  box-shadow: 0 4px 16px #8bc34a44;
+}
+
+.statsBlock {
+  min-width: 260px;
+  background: linear-gradient(180deg, #8bc34a 0%, #22325a 100%);
+  color: #fff;
+  border-radius: 18px;
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 2px 12px #22325a22;
+  align-items: flex-start;
+  justify-content: center;
+  font-size: 1.08rem;
+  padding: 10%;
+}
+
+.item {
+    font-size: 24px;
+}
+
+.statsTitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  text-align: center;
+  width: 100%;
+}
+.statsItem {
+  font-size: 1rem;
+}
+
+.ratingSection {
+  margin-top: 24px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.ratingTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.ratingList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.ratingItem, .ratingItem1, .ratingItem2, .ratingItem3, .ratingItem4, .ratingItem5, .ratingItem6, .ratingItem7, .ratingItem8, .ratingItem9, .ratingItem10 {
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ratingList li::before {
+  content: counter(item) ". ";
+  counter-increment: item;
+  font-weight: 700;
+  margin-right: 6px;
+}
+.ratingList {
+  counter-reset: item;
+}
+.ratingItem1 { color: #8bc34a; font-weight: 700; }
+.ratingItem2 { color: #b6d94c; font-weight: 700; }
+.ratingItem3 { color: #e6f36a; font-weight: 700; }
+.ratingItem4 { color: #8bc34a; font-weight: 700; }
+.ratingItem5 { color: #b6d94c; font-weight: 700; }
+.ratingItem6 { color: #e6f36a; font-weight: 700; }
+.ratingItem7 { color: #8bc34a; font-weight: 700; }
+.ratingItem8 { color: #b6d94c; font-weight: 700; }
+.ratingItem9 { color: #e6f36a; font-weight: 700; }
+.ratingItem10 { color: #8bc34a; font-weight: 700; }

@@ -9,6 +9,8 @@ import AuthPage from '../pages/AuthPage/AuthPage';
 import ProtectedRoute from '../components/ProtectedRoute/ProtectedRoute';
 import ProfilePage from '../pages/ProfilePage/ProfilePage';
 import EventsPage from '../pages/EventsPage/EventsPage';
+import AdminPersonalPage from '../pages/AdminPersonalPage/AdminPersonalPage';
+import AdminEventsPage from '../pages/AdminEventsPage/AdminEventsPage';
 
 export const router = createBrowserRouter([
   {
@@ -42,6 +44,14 @@ export const router = createBrowserRouter([
       {
         path: "/profile",
         element: <ProtectedRoute><ProfilePage /></ProtectedRoute>
+      },
+      {
+        path: "/admin/personal",
+        element: <ProtectedRoute><AdminPersonalPage /></ProtectedRoute>
+      },
+      {
+        path: "/admin/events",
+        element: <ProtectedRoute><AdminEventsPage /></ProtectedRoute>
       },
     ]
   }

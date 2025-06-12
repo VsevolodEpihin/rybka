@@ -26,6 +26,7 @@ interface AuthStore {
   validationErrors: ValidationErrors;
   user: User | null;
   token: string | null;
+  role: string;
   setField: (field: keyof AuthForm, value: string) => void;
   validateField: (field: keyof AuthForm) => void;
   validateForm: () => boolean;
@@ -63,6 +64,7 @@ const useAuthStore = create<AuthStore>((set, get) => ({
   user: null,
   token: localStorage.getItem('token'),
   modal: 'auth',
+  role: 'user',
   isOpen: true,
   prevPath: '/',
   setField: (field, value) => set((state) => ({
@@ -120,9 +122,9 @@ const useAuthStore = create<AuthStore>((set, get) => ({
     set({ isLoading: true, error: null });
     try {
       const { access_token, user } = await authLogin(get().form);
-      console.log(access_token)
+      const { role } = user
       localStorage.setItem('token', access_token);
-      set({ token: access_token, user, error: null });
+      set({ token: access_token, user, role, error: null });
     } catch (err: unknown) {
       if(err instanceof Error) {
         set({ error: err.message || 'Ошибка авторизации' });

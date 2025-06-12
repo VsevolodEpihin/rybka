@@ -1,3 +1,4 @@
+import { Link } from 'react-router';
 import Button from '../Button/Button';
 import styles from './InfoBox.module.css';
 
@@ -23,7 +24,7 @@ const InfoBox = ({
         <p className={styles.text}>
           {text}
         </p>
-        {textButton && <Button>{textButton}</Button>}
+        {textButton && <Link to="/about-us"><Button>{textButton}</Button></Link>}
       </div>
       <div className={styles.imgContainer}>
         <img src={pathImg} alt={altText} />

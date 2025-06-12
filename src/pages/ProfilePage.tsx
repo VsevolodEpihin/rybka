@@ -61,20 +61,16 @@ const ProfilePage = () => {
              <label>Размер одежды</label>
              <input type="text" value="M" />
           </div>
-          {/* Buttons */}
           <button className={styles.saveButton}>Сохранить изменения</button>
           <button className={styles.changePasswordButton}>Изменить пароль</button>
         </div>
 
-        {/* Right Section - Image, Stats, Awards */}
         <div className={styles.rightSection}>
           {/* Profile Image */}
           <div className={styles.profileImageContainer}>
-             {/* Add img tag for profile picture */}
-             <div className={styles.placeholderImage}></div> {/* Placeholder */}
+             <div className={styles.placeholderImage}></div>
           </div>
 
-          {/* Statistics */}
           <div className={styles.statisticsBlock}>
             <h4>Статистика</h4>
             <p>Количество мероприятий: 100</p>
@@ -84,11 +80,9 @@ const ProfilePage = () => {
             <p>Рейтинг на платформе: №1</p>
           </div>
 
-          {/* Awards */}
           <div className={styles.awardsBlock}>
             <h4>Награды</h4>
             <div className={styles.awardsGrid}>
-              {/* Add award icons/placeholders here */}
               <div className={styles.placeholderAward}></div>
               <div className={styles.placeholderAward}></div>
               <div className={styles.placeholderAward}></div>

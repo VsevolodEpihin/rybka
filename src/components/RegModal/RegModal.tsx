@@ -17,12 +17,13 @@ const RegModal = () => {
     register, 
     validationErrors,
     validateField,
-    isLoading 
+    user,
+    isLoading
   } = useRegStore();
   const { setModal, closeModal, prevPath, setPrevPath } = useAuthStore();
   const formRef = useRef<HTMLFormElement>(null);
   const navigate = useNavigate();
-
+  console.log(user)
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {

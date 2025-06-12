@@ -1,21 +1,42 @@
 import { useState } from "react";
+import styles from './Calendar.module.css';
 
-import styles from './Calendar.module.css'
+interface Event {
+  title: string;
+  hashtag: string;
+  time: string;
+}
 
-const eventsData: Record<string, string[]> = {
-    '2025-05-31': ['Встреча с друзьями', 'Созвон с командой'],
-    '2025-06-01': ['Доклад на конференции'],
-    '2025-06-15': ['Поездка в Москву']
-  };
-  
+const eventsData: Record<string, Event[]> = {
+  '2024-04-01': [
+    {
+      title: 'Собрание Волонтерского Центра ИКТИБ ЮФУ',
+      hashtag: '#МЫВМЕСТЕ',
+      time: '11:00',
+    },
+    {
+      title: 'Второе собрание Волонтерского Центра ИКТИБ ЮФУ',
+      hashtag: '#МЫВМЕСТЕ',
+      time: '13:00',
+    },
+    {
+      title: 'Третье собрание Волонтерского Центра ИКТИБ ЮФУ',
+      hashtag: '#МЫВМЕСТЕ',
+      time: '15:00',
+    },
+  ],
+};
+
+const weekDays = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
 
 const Calendar = () => {
-  const [currentDate, setCurrentDate] = useState(new Date());
-  const [selectedDate, setSelectedDate] = useState<string | null>(null);
+  const [currentDate, setCurrentDate] = useState(new Date(2024, 3, 1)); // апрель 2024
+  const [selectedDate, setSelectedDate] = useState<string | null>('2024-04-01');
 
   const startOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
   const endOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
   const daysInMonth = endOfMonth.getDate();
+  const startDay = (startOfMonth.getDay() + 6) % 7;
 
   const handlePrevMonth = () => {
     setCurrentDate(prev => new Date(prev.getFullYear(), prev.getMonth() - 1, 1));
@@ -31,60 +52,59 @@ const Calendar = () => {
     const selected = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
     setSelectedDate(selected.toISOString().split('T')[0]);
   };
+
   const renderDays = () => {
     const days = [];
-    const startDay = startOfMonth.getDay();
-
     for (let i = 0; i < startDay; i++) {
-      days.push(<div key={`empty-${i}`} className="day empty"></div>);
+      days.push(<div key={`empty-${i}`} className={styles.dayEmpty}></div>);
     }
-
     for (let day = 1; day <= daysInMonth; day++) {
       const dateStr = new Date(currentDate.getFullYear(), currentDate.getMonth(), day).toISOString().split('T')[0];
       const isSelected = selectedDate === dateStr;
       days.push(
         <div
           key={day}
-          className={`day ${isSelected ? 'selected' : ''}`}
+          className={isSelected ? `${styles.day} ${styles.selected}` : styles.day}
           onClick={() => handleDateClick(day)}
         >
           {day}
         </div>
       );
     }
-
     return days;
   };
 
-  const eventList = selectedDate ? eventsData[selectedDate] || [] : [];
-
+  const eventList = selectedDate ? eventsData[selectedDate] ?? [] : [];
 
   return (
-    <div className={styles.calendarContainer}>
-      <div className={styles.calendar}>
+    <div className={styles.calendarWrapper}>
+      <div className={styles.calendarCard}>
         <div className={styles.header}>
-          <button onClick={handlePrevMonth}>←</button>
-          <h2>{currentDate.toLocaleString('ru-RU', { month: 'long', year: 'numeric' })}</h2>
-          <button onClick={handleNextMonth}>→</button>
+          <button className={styles.monthBtn} onClick={handlePrevMonth}>&#8592;</button>
+          <h2 className={styles.monthTitle}>{currentDate.toLocaleString('ru-RU', { month: 'long', year: 'numeric' })}</h2>
+          <button className={styles.monthBtn} onClick={handleNextMonth}>&#8594;</button>
+        </div>
+        <div className={styles.weekDaysGrid}>
+          {weekDays.map((d: string) => <div key={d} className={styles.weekDay}>{d}</div>)}
         </div>
         <div className={styles.daysGrid}>{renderDays()}</div>
       </div>
-      <div className={styles.events}>
-        <h3>Мероприятия</h3>
-        {selectedDate ? (
-          eventList.length ? (
-            <ul>
-              {eventList.map((event, i) => <li key={i}>{event}</li>)}
-            </ul>
-          ) : (
-            <p>Нет мероприятий</p>
-          )
+      <div className={styles.eventsSection}>
+        {eventList.length > 0 ? (
+          eventList.map((event: Event, idx: number) => (
+            <div className={styles.eventCard} key={idx}>
+              <div className={styles.eventDate}>1 апреля 2024</div>
+              <div className={styles.eventTitle}>{event.title}</div>
+              <div className={styles.eventTime}>{event.time}</div>
+              <div className={styles.eventHashtag}>{event.hashtag}</div>
+            </div>
+          ))
         ) : (
-          <p>Выберите дату</p>
+          <div className={styles.noEvents}>Нет мероприятий</div>
         )}
       </div>
     </div>
   );
-}
+};
 
 export default Calendar;

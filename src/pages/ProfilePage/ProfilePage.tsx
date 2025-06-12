@@ -1,6 +1,8 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import styles from './ProfilePage.module.css';
 import Alert from '../../components/Alert/Alert';
+import useAuthStore from '../../store/authStore';
+import { Link } from 'react-router-dom';
 
 const ProfilePage = () => {
   const [showAlert, setShowAlert] = useState(false);
@@ -18,6 +20,7 @@ const ProfilePage = () => {
     priorityAreas: "Событийное, социальное",
     gender: "Женский",
   });
+  const { role } = useAuthStore();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -39,7 +42,9 @@ const ProfilePage = () => {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Личный Кабинет Волонтера</h2>
+      <h2 className={styles.title}>
+        Личный <span className={styles.cabinet}>Кабинет</span> <span className={styles.organization}>Организации</span>
+      </h2>
       <div className={styles.contentArea}>
       <div className={styles.personalInfoSection}>
           <div className={styles.infoRow}>
@@ -187,6 +192,20 @@ const ProfilePage = () => {
                 <img src="/prize.png" alt="prize" />
               </div>
             </div>
+            {role === 'admin' &&
+            <>
+              <Link to="/admin/personal">
+                <button className={styles.buttonParticipants}>
+                  Посмотреть всех участников
+                </button>
+              </Link>
+              <Link to="/admin/events">
+              <button className={styles.buttonParticipants}>
+                Посмотреть все Мероприятия
+              </button>
+              </Link>
+            </>
+            }
           </div>
         </div>
       </div>

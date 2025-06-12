@@ -2,36 +2,63 @@
     padding: 20px;
   }
   
-  .title {
-    text-align: center;
-    margin-bottom: 20px;
-  }
+.buttonParticipants {
+  background-color: #8bc34a;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 7%;
+  cursor: pointer;
+}
+.item{
+  font-size: 48px;
+}
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+}
   
-  .contentArea {
-    display: flex;
-    gap: 20px; /* Space between left and right sections */
-  }
+.title {
+  text-align: center;
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin-bottom: 32px;
+  color: #22325a;
+}
+.cabinet {
+  color: #8bc34a;
+}
+.organization {
+  color: #e6f36a;
+  text-shadow: 0 1px 2px #22325a22;
+}
+
+.contentArea {
+  display: flex;
+  gap: 20px;
+}
   
   .personalInfoSection {
-    flex: 1; /* Take up available space */
+    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 10px; /* Space between info rows */
+    gap: 10px;
   }
   
   .infoRow {
     display: flex;
     align-items: center;
-    gap: 10px; /* Space between label and input */
+    gap: 10px;
   }
   
   .infoRow label {
     font-weight: bold;
-    width: 150px; /* Adjust as needed */
+    width: 150px;
   }
   
   .infoRow input {
-    flex: 1; /* Input takes remaining space */
+    flex: 1;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -52,7 +79,7 @@
   }
   
   .changePasswordButton {
-    background-color: #cddc39; /* Lighter green */
+    background-color: #cddc39;
     color: white;
   }
   
@@ -61,7 +88,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px; /* Space between elements in right section */
+    gap: 20px;
   }
   
   .profileImageContainer {
